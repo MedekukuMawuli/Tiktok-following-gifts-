@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Follow Me on TikTok</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #25D366;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .btn.sms {
+      background-color: #007BFF;
+    }
+    .btn.follow {
+      background-color: #FE2C55;
+    }
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Follow Me on TikTok</h1>
+    <p>My TikTok Username: <strong>@medekukumawuli3</strong></p>
+    
+    <h3>Follow Me:</h3>
+    <a href="https://www.tiktok.com/@medekukumawuli3" class="btn follow">Follow on TikTok</a>
+
+    <h3>Share with Friends:</h3>
+    <a href="https://api.whatsapp.com/send?text=Follow+my+TikTok+%40medekukumawuli3+https://www.tiktok.com/@medekukumawuli3?_r=" class="btn">Share on WhatsApp</a>
+    <a href="sms:?body=Follow+my+TikTok+%40medekukumawuli3+https://www.tiktok.com/@medekukumawuli3?_r=" class="btn sms">Share via SMS</a>
+
+    <h3>Get Your Bundle Gift:</h3>
+    <form id="giftForm">
+      <input type="text" id="phoneNumber" placeholder="Enter your phone number" required>
+      <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+    <p id="response" style="color: green; font-weight: bold;"></p>
+  </div>
+
+  <script>
+    function submitForm() {
+      const phoneNumber = document.getElementById("phoneNumber").value;
+      if (phoneNumber) {
+        document.getElementById("response").innerText = "Gift will be sent to " + phoneNumber;
+        // Here, you'd add code tom send the number to your server for processing.
+      } else {
+        alert("Please enter your phone number.");
+      }
+    }
+  </script>
+</body>
+</html>
