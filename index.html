@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Follow Me on TikTok</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #FF2E63;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .social-share {
+      margin: 20px 0;
+    }
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+    }
+    #tiktokLink {
+      margin: 20px 0;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Follow Me on TikTok</h1>
+    <p>Enter your TikTok username or link:</p>
+
+    <form id="tiktokForm" onsubmit="generateLink(event)">
+      <input type="text" id="tiktokInput" placeholder="Enter TikTok username or link" required>
+      <button type="submit">Generate Link</button>
+    </form>
+
+    <div id="tiktokLink">
+      <p>Your TikTok Profile Link:</p>
+      <a id="tiktokProfileLink" href="#" class="btn" target="_blank">Go to TikTok Profile</a>
+    </div>
+
+    <div class="social-share">
+      <p>Share Your TikTok Profile:</p>
+      <a id="whatsappShare" href="#" class="btn" target="_blank">Share on WhatsApp</a>
+      <a id="smsShare" href="#" class="btn" target="_blank">Share via SMS</a>
+    </div>
+
+    <form id="dataGiftForm" onsubmit="submitNumber(event)">
+      <p>Enter your phone number to receive a data gift:</p>
+      <input type="tel" id="phoneNumber" placeholder="Enter your phone number" required>
+      <button type="submit">Submit</button>
+    </form>
+
+    <p id="response"></p>
+  </div>
+
+  <script>
+    function generateLink(event) {
+      event.preventDefault();
+      const input = document.getElementById("tiktokInput").value.trim();
+      let link;
+
+      // Check if the input is a direct TikTok link or just a username
+      if (input.startsWith("http")) {
+        link = input;
+      } else {
+        link = `https://www.tiktok.com/@${input}`;
+      }
+
+      // Update the TikTok profile link
+      const profileLink = document.getElementById("tiktokProfileLink");
+      profileLink.href = link;
+      profileLink.innerText = `Go to TikTok Profile`;
+      document.getElementById("tiktokLink").style.display = "block";
+
+      // Update social share links
+      document.getElementById("whatsappShare").href = `https://wa.me/?text=Check out this TikTok profile: ${link}`;
+      document.getElementById("smsShare").href = `sms:?body=Check out this TikTok profile: ${link}`;
+    }
+
+    function submitNumber(event) {
+      event.preventDefault();
+      const phoneNumber = document.getElementById("phoneNumber").value.trim();
+      if (phoneNumber) {
+        document.getElementById("response").innerText = `Thank you! Your data gift will be sent to ${phoneNumber}.`;
+        // Backend logic to process the number can be added here
+      } else {
+        alert("Please enter your phone number.");
+      }
+    }
+  </script>
+</body>
+</html>
